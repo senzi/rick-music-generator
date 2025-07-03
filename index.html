@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Rhythmic Intelligent Composition Kit (R.I.C.K.)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <!-- DaisyUI and Tailwind CSS CDN -->
   <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
@@ -16,16 +17,53 @@
     :root {
       --primary-rgb: 99, 102, 241;
     }
+    
+    /* 移动端优化 */
+    @media (max-width: 768px) {
+      .text-lg {
+        font-size: 0.95rem !important;
+      }
+      .text-xl {
+        font-size: 1.1rem !important;
+      }
+      .text-2xl {
+        font-size: 1.25rem !important;
+      }
+      .text-3xl {
+        font-size: 1.5rem !important;
+      }
+      .btn-lg {
+        font-size: 1rem !important;
+        padding: 0.75rem 1rem !important;
+      }
+      .card-body {
+        padding: 1.25rem !important;
+      }
+      .input, .textarea {
+        font-size: 0.95rem !important;
+      }
+      .label-text {
+        font-size: 0.9rem !important;
+      }
+      .badge-lg {
+        font-size: 0.75rem !important;
+        padding: 0.4rem 0.6rem !important;
+      }
+      .menu-lg li a {
+        font-size: 0.95rem !important;
+        padding: 0.5rem 0.75rem !important;
+      }
+    }
   </style>
 </head>
 <body class="min-h-screen bg-base-300 flex flex-col items-center pt-8 pb-8">
   <!-- App Container Card -->
-  <div class="card w-full max-w-4xl bg-base-100 shadow-2xl rounded-3xl overflow-hidden flex flex-col">
+  <div class="card w-full max-w-4xl bg-base-100 shadow-2xl rounded-3xl overflow-hidden flex flex-col mx-2">
     <!-- Navbar -->
     <div class="navbar bg-primary text-primary-content rounded-t-3xl">
       <div class="container mx-auto px-6">
         <div class="flex-1">
-          <h1 class="text-2xl md:text-3xl font-bold">R.I.C.K. · AI音乐生成器</h1>
+          <h1 class="text-xl md:text-3xl font-bold">R.I.C.K. · AI音乐生成器</h1>
         </div>
         <div class="flex-none">
           <button id="aboutBtn" class="btn btn-ghost btn-circle">
@@ -50,10 +88,10 @@
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-info h-6 w-6 shrink-0">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
         </svg>
-        <div class="flex justify-center w-full">
-          <div class="text-center">
-            <h3 class="font-bold text-xl mb-1">版本更新公告</h3>
-            <div class="text-base">
+        <div class="flex w-full">
+          <div class="text-left md:text-center w-full">
+            <h3 class="font-bold text-lg md:text-xl mb-1">版本更新公告</h3>
+            <div class="text-sm md:text-base">
               R.I.C.K.的Demo在2024年7月3日发布第一版，在微博上得到了大家的热烈支持和转发。<br>
               经过一年的迭代，在2025年7月3日发布RICK-V2模型，也采用了更加方便的部署方式。<br>
               轻量级的V2模型可以直接在浏览器生成你想要的音乐，无需依赖huggingface等平台。
@@ -64,43 +102,43 @@
     </div>
 
     <!-- Main Content -->
-    <main class="container mx-auto px-6 py-8 flex-grow">
+    <main class="container mx-auto px-4 md:px-6 py-6 md:py-8 flex-grow">
       <div class="card bg-base-200 shadow-md rounded-2xl">
         <div class="card-body">
           <form id="rickForm" class="space-y-5">
             <div class="form-control">
               <label class="label">
-                <span class="label-text text-lg font-medium">歌曲名称</span>
+                <span class="label-text text-base md:text-lg font-medium">歌曲名称</span>
               </label>
-              <input type="text" id="songName" placeholder="我的新歌" class="input input-bordered input-primary w-full text-lg rounded-xl" required>
+              <input type="text" id="songName" placeholder="我的新歌" class="input input-bordered input-primary w-full text-base md:text-lg rounded-xl" required>
             </div>
             
             <div class="form-control">
               <label class="label">
-                <span class="label-text text-lg font-medium">音乐描述</span>
+                <span class="label-text text-base md:text-lg font-medium">音乐描述</span>
               </label>
-              <textarea id="description" rows="4" placeholder="写点关于情感、场景或主题..." class="textarea textarea-bordered textarea-primary w-full text-lg rounded-xl" required></textarea>
+              <textarea id="description" rows="4" placeholder="写点关于情感、场景或主题..." class="textarea textarea-bordered textarea-primary w-full text-base md:text-lg rounded-xl" required></textarea>
             </div>
             
             <div class="form-control">
               <label class="label">
-                <span class="label-text text-lg font-medium">音乐风格</span>
+                <span class="label-text text-base md:text-lg font-medium">音乐风格</span>
               </label>
-              <input type="text" id="genre" placeholder="流行 / 摇滚 / 古典 / 电子..." class="input input-bordered input-primary w-full text-lg rounded-xl" required>
+              <input type="text" id="genre" placeholder="流行 / 摇滚 / 古典 / 电子..." class="input input-bordered input-primary w-full text-base md:text-lg rounded-xl" required>
             </div>
             
             <div class="form-control">
               <label class="label">
-                <span class="label-text text-lg font-medium">模型选择</span>
+                <span class="label-text text-base md:text-lg font-medium">模型选择</span>
               </label>
-              <div class="flex gap-3 mt-1">
+              <div class="flex flex-col md:flex-row gap-3 mt-1">
                 <label class="flex items-center gap-2 cursor-pointer">
                   <input type="radio" name="modelType" value="RICK-V2" class="radio radio-primary" checked />
-                  <span class="badge badge-lg badge-primary text-primary-content px-4 py-3">RICK-V2</span>
+                  <span class="badge badge-lg badge-primary text-primary-content px-3 py-2 md:px-4 md:py-3">RICK-V2</span>
                 </label>
                 <label class="flex items-center gap-2 cursor-pointer">
                   <input type="radio" name="modelType" value="RICK-V2-Turbo" class="radio radio-primary" />
-                  <span class="badge badge-lg badge-outline badge-primary px-4 py-3">RICK-V2-Turbo</span>
+                  <span class="badge badge-lg badge-outline badge-primary px-3 py-2 md:px-4 md:py-3">RICK-V2-Turbo</span>
                 </label>
               </div>
             </div>
@@ -120,7 +158,7 @@
       <!-- Audio Player -->
       <div class="card bg-base-200 shadow-md rounded-2xl mt-8 hidden" id="audioCard">
         <div class="card-body items-center text-center">
-          <h2 class="card-title text-xl mb-4">
+          <h2 class="card-title text-lg md:text-xl mb-4">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
               <path stroke-linecap="round" stroke-linejoin="round" d="M9 9l10.5-3m0 6.553v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 11-.99-3.467l2.31-.66a2.25 2.25 0 001.632-2.163zm0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 01-.99-3.467l2.31-.66A2.25 2.25 0 009 15.553z" />
             </svg>
@@ -153,20 +191,20 @@
 
   <!-- About Modal -->
   <div id="aboutModal" class="modal">
-    <div class="modal-box max-w-3xl rounded-2xl bg-base-100 shadow-lg">
+    <div class="modal-box max-w-3xl rounded-2xl bg-base-100 shadow-lg mx-2">
       <form method="dialog">
         <button id="modalClose" class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
       </form>
       
       <!-- Modal Header -->
       <div class="bg-primary text-primary-content px-6 py-4 -mx-6 -mt-6 rounded-t-2xl mb-6">
-        <h2 class="font-bold text-2xl">Rhythmic Intelligent Composition Kit</h2>
+        <h2 class="font-bold text-xl md:text-2xl">Rhythmic Intelligent Composition Kit</h2>
       </div>
       
       <!-- Introduction Card -->
       <div class="card bg-base-200 shadow-sm mb-6">
         <div class="card-body">
-          <p class="text-lg"><strong>Rhythmic Intelligent Composition Kit</strong>（简称R.I.C.K.）是一款尖端的AI音乐生成工具，专为音乐创作者和爱好者设计。我们利用最先进的机器学习和深度学习算法，结合大量音乐数据，为用户提供无与伦比的创作体验。</p>
+          <p class="text-base md:text-lg"><strong>Rhythmic Intelligent Composition Kit</strong>（简称R.I.C.K.）是一款尖端的AI音乐生成工具，专为音乐创作者和爱好者设计。我们利用最先进的机器学习和深度学习算法，结合大量音乐数据，为用户提供无与伦比的创作体验。</p>
         </div>
       </div>
       
@@ -175,7 +213,7 @@
       <!-- Features Section -->
       <div class="collapse collapse-arrow bg-base-200 mb-4">
         <input type="checkbox" checked /> 
-        <div class="collapse-title font-bold text-xl bg-base-300">
+        <div class="collapse-title font-bold text-lg md:text-xl bg-base-300">
           功能特色
         </div>
         <div class="collapse-content"> 
@@ -227,7 +265,7 @@
       <!-- Usage Section -->
       <div class="collapse collapse-arrow bg-base-200 mb-4">
         <input type="checkbox" checked /> 
-        <div class="collapse-title font-bold text-xl bg-base-300">
+        <div class="collapse-title font-bold text-lg md:text-xl bg-base-300">
           使用方法
         </div>
         <div class="collapse-content"> 
@@ -245,8 +283,8 @@
       <!-- About Us Section -->
       <div class="card bg-base-200 shadow-sm">
         <div class="card-body">
-          <h3 class="card-title text-xl">关于我们</h3>
-          <p class="text-lg">R.I.C.K. 由一群热爱音乐与AI的开发者构建。我们希望降低音乐创作门槛，让每一个人都能拥有属于自己的旋律。</p>
+          <h3 class="card-title text-lg md:text-xl">关于我们</h3>
+          <p class="text-base md:text-lg">R.I.C.K. 由一群热爱音乐与AI的开发者构建。我们希望降低音乐创作门槛，让每一个人都能拥有属于自己的旋律。</p>
           <div class="card-actions justify-end mt-2">
             <a href="https://weibo.com/u/7402396589" target="_blank" class="btn btn-primary">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-dots-fill" viewBox="0 0 16 16">
@@ -261,6 +299,9 @@
     <div class="modal-backdrop bg-black opacity-50"></div>
   </div>
 
+  <!-- Wave.js for audio visualization -->
+  <script src="https://cdn.jsdelivr.net/gh/foobar404/wave.js/dist/bundle.js"></script>
+  
   <script>
   (function(){
     const form = document.getElementById('rickForm');
@@ -297,14 +338,49 @@
         btn.disabled = false;
         btn.classList.remove('loading');
         
-        // 使用 daisyUI 样式包装音频播放器
+        // 使用 daisyUI 样式包装音频播放器，添加可视化效果
         audioContainer.innerHTML = `
           <div class="flex flex-col items-center">
-            <div class="w-full flex items-center justify-center">
-              <audio controls class="w-full rounded-lg" src="ai_output.mp3"></audio>
+            <div class="w-full flex items-center justify-center mb-4">
+              <audio id="audioPlayer" controls class="w-full rounded-lg" src="ai_output.mp3"></audio>
+            </div>
+            <div class="w-full h-36 md:h-48 bg-base-300 rounded-lg overflow-hidden">
+              <canvas id="visualizer" class="w-full h-full"></canvas>
             </div>
           </div>
         `;
+        
+        // 初始化 Wave.js 可视化
+        try {
+          if (typeof Wave !== 'undefined') {
+            // 获取音频和画布元素
+            const audioElement = document.getElementById("audioPlayer");
+            const canvasElement = document.getElementById("visualizer");
+            
+            // 创建 Wave 实例
+            const wave = new Wave(audioElement, canvasElement);
+            
+            // 添加动画效果
+            wave.addAnimation(new wave.animations.Wave({
+              lineColor: "#570df8", // daisyUI 主色
+              fillColor: { gradient: ["#570df8", "#1DCDBC"], rotate: 45 }, // daisyUI 主色和次色渐变
+              lineWidth: 3,
+              count: 30,
+              responsive: true
+            }));
+            
+            // 添加额外的动画效果，使视觉效果更丰富
+            wave.addAnimation(new wave.animations.Shine({
+              lineColor: "#1DCDBC", // daisyUI 次色
+              count: 20,
+              diameter: 300
+            }));
+          } else {
+            console.warn("Wave.js library not loaded. Audio visualization will not be available.");
+          }
+        } catch (error) {
+          console.error("Error initializing Wave.js:", error);
+        }
         audioCard.classList.remove('hidden');
         audioCard.scrollIntoView({behavior: 'smooth'});
       }, delay * 1000);
